@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Moq.Sequences;
 
 namespace DartsKata.Test
 {
@@ -83,6 +84,50 @@ namespace DartsKata.Test
             var dartsGame = new DartsGame(GameType.The301, new[] { _player1.Object, _player2.Object });
 
             Assert.IsTrue(dartsGame.Finished);
+        }
+
+        [TestMethod]
+        public void DartsGameTest_PlayTurn_AsksPlayersInOrderToPlayHisTurn()
+        {            
+            var dartsGame = new DartsGame(GameType.The301, new[] { _player1.Object, _player2.Object });
+
+            using (Sequence.Create())
+            {
+                _player1.Setup(p => p.PlayTurn()).InSequence();
+                _player2.Setup(p => p.PlayTurn()).InSequence();
+
+                dartsGame.PlayTurn();
+            }            
+        }
+
+        [TestMethod]
+        public void DartsGameTest_PlayTurn_EndsTurnWhenAPlayerWins()
+        {
+            var player3 = new Mock<IPlayer>();
+            _player2.SetupSequence(p => p.HasWon)
+                .Returns(false)
+                .Returns(true);            
+            var dartsGame = new DartsGame(GameType.The301, new[] { _player1.Object, _player2.Object, player3.Object });
+
+            using (Sequence.Create())
+            {
+                _player1.Setup(p => p.PlayTurn()).InSequence();
+                _player2.Setup(p => p.PlayTurn()).InSequence();
+
+                dartsGame.PlayTurn();
+
+                player3.Verify(p => p.PlayTurn(), Times.Never);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void DartsGameTest_PlayTurn_ThrowsExceptionWhenTheGameIsAlreadyFinished()
+        {
+            _player2.SetupGet(p => p.HasWon).Returns(true);
+            var dartsGame = new DartsGame(GameType.The301, new[] { _player1.Object, _player2.Object });
+
+            dartsGame.PlayTurn();
         }
     }
 }

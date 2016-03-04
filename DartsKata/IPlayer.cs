@@ -11,5 +11,7 @@ namespace DartsKata
         bool HasWon { get; }
 
         void Initialize(IScorecard scorecard);
+
+        void PlayTurn();
     }
 }

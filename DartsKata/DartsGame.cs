@@ -30,6 +30,17 @@ namespace DartsKata
             {
                 return this._players.Any(p => p.HasWon);
             }
-        }    
+        }
+
+        public void PlayTurn()
+        {
+            if (this.Finished) throw new InvalidOperationException("Cannot play another turn on a finished game");
+
+            foreach(var player in this._players)
+            {
+                player.PlayTurn();
+                if (player.HasWon) break;
+            }
+        }
     }
 }

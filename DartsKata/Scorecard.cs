@@ -23,7 +23,26 @@ namespace DartsKata
 
         public void Add(params IDartThrowResult[] dartsThrown)
         {
-            throw new NotImplementedException();
+            var updatedScore = _score;
+            foreach(var result in dartsThrown)
+            {
+                updatedScore -= result.TotalPoints;
+            }
+
+            if (updatedScore > 1)
+            {
+                _score = updatedScore;
+            }
+            else if (updatedScore == 0 && verifyValidLastThrow(dartsThrown))
+            {
+                _score = 0;
+            }
+        }
+
+        private bool verifyValidLastThrow(IDartThrowResult[] dartsThrown)
+        {
+            var lastDart = dartsThrown.Last();
+            return lastDart.IsBullseye || lastDart.IsDouble;
         }
     }
 }

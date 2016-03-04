@@ -30,6 +30,16 @@ namespace DartsKata
             this._pointsModifier = pointsModifier;
         }
 
+        public bool IsDouble
+        {
+            get { return _pointsModifier == PointsModifier.Double; }
+        }
+
+        public bool IsBullseye
+        {
+            get { return _points == 50; }
+        }
+
         public int TotalPoints
         {
             get 
@@ -38,6 +48,6 @@ namespace DartsKata
                 if (this._pointsModifier == PointsModifier.Triple) return this._points * 3;
                 return this._points;
             }
-        }
+        }        
     }
 }

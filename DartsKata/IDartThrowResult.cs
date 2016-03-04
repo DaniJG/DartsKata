@@ -9,5 +9,9 @@ namespace DartsKata
     public interface IDartThrowResult
     {
         int TotalPoints { get; }
+
+        bool IsDouble { get; }
+
+        bool IsBullseye { get; }
     }
 }

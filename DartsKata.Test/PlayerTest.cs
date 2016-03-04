@@ -65,6 +65,22 @@ namespace DartsKata.Test
         }
 
         [TestMethod]
+        public void Player_PlayTurn_StopsThrowingDartsIfReachingLessThan2Points()
+        {
+            _scorecard.SetupGet(s => s.Score).Returns(20);
+            _throwResult[0].SetupGet(r => r.TotalPoints).Returns(19);
+            _dartThrower.SetupSequence(t => t.ThrowDart(It.IsAny<int>()))
+                .Returns(_throwResult[0].Object)
+                .Returns(_throwResult[1].Object)
+                .Returns(_throwResult[2].Object);
+
+            _player.StartNewGame(_scorecard.Object);
+            _player.PlayTurn();
+
+            _scorecard.Verify(s => s.Add(_throwResult[0].Object));
+        }
+
+        [TestMethod]
         public void Player_PlayTurn_AimsEachDartDependingOnTheScore()
         {
             _scorecard.SetupGet(s => s.Score).Returns(140);

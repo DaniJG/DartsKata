@@ -68,6 +68,30 @@ namespace DartsKata.Test
         }
 
         [TestMethod]
+        public void DartThrowResult_IsDouble_ReturnsTrueWithTheDoubleModifier()
+        {
+            var nonDoubleResult1 = new DartThrowResult(20, PointsModifier.Triple);
+            var nonDoubleResult2 = new DartThrowResult(20);
+            var doubleResult = new DartThrowResult(10, PointsModifier.Double);
+
+            Assert.IsFalse(nonDoubleResult1.IsDouble);
+            Assert.IsFalse(nonDoubleResult2.IsDouble);
+            Assert.IsTrue(doubleResult.IsDouble);
+        }
+
+        [TestMethod]
+        public void DartThrowResult_IsBullseye_ReturnsTrueWith50Points()
+        {
+            var nonBullseyeResult1 = new DartThrowResult(25);
+            var nonBullseyeResult2 = new DartThrowResult(20, PointsModifier.Triple);
+            var bullseyeResult = new DartThrowResult(50);
+
+            Assert.IsFalse(nonBullseyeResult1.IsBullseye);
+            Assert.IsFalse(nonBullseyeResult2.IsBullseye);
+            Assert.IsTrue(bullseyeResult.IsBullseye);
+        }
+
+        [TestMethod]
         public void DartThrowResult_TotalPoints_ReturnsThePointsWithoutModifier()
         {
             var result = new DartThrowResult(17);

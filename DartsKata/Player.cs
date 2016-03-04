@@ -34,16 +34,16 @@ namespace DartsKata
             if (this.HasWon) throw new InvalidOperationException("Cannot play another turn when player has already cleared the score");
 
             var score = _scorecard.Score;
-            var darts = Enumerable.Range(0, 3)
-                .Select(x => 
-                {
-                    var dart = _dartThrower.ThrowDart(score);
-                    score -= dart.TotalPoints;
-                    return dart;
-                })
-                .ToArray();
+            var throwResults = new List<IDartThrowResult>();
+            for(var x= 0; x<3; x++)
+            {
+                var result = _dartThrower.ThrowDart(score);
+                throwResults.Add(result);
+                score -= result.TotalPoints;
 
-            _scorecard.Add(darts);
+                if (score < 2) break;
+            }
+            _scorecard.Add(throwResults.ToArray());
         }
     }
 }

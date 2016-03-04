@@ -11,7 +11,7 @@ namespace DartsKata
         private GameType _gameType;
         private IPlayer[] _players;
 
-        public DartsGame(GameType gameType, IPlayer[] players)
+        public DartsGame(GameType gameType, params IPlayer[] players)
         {
             if (players == null) throw new ArgumentNullException("players");
             if (players.Length < 2) throw new ArgumentOutOfRangeException("players");
@@ -36,8 +36,10 @@ namespace DartsKata
         {
             if (this.Finished) throw new InvalidOperationException("Cannot play another turn on a finished game");
 
+            Console.WriteLine("Playing next Turn");
             foreach(var player in this._players)
             {
+                Console.WriteLine("Player " + this._players.ToList().IndexOf(player));    
                 player.PlayTurn();
                 if (player.HasWon) break;
             }

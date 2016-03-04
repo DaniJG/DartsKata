@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DartsKata.DartsGame">
+    <Position X="8.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAQAAAAAABAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>DartsGame.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gameType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_players" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DartsKata.DartThrowResult">
+    <Position X="8.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAACgAAAAACAQAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>DartThrowResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_pointsModifier" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DartsKata.Player">
+    <Position X="11.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAIAAAAAACAAiAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dartThrower" />
+      <Field Name="_scorecard" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DartsKata.Scorecard">
+    <Position X="14.75" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAggAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scorecard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DartsKata.IDartThrower">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>IDartThrower.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DartsKata.IDartThrowResult">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>IDartThrowResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DartsKata.IPlayer">
+    <Position X="11.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACAACAAAAAAA=</HashCode>
+      <FileName>IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DartsKata.IScorecard">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IScorecard.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DartsKata.PointsModifier">
+    <Position X="11.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>DartThrowResult.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DartsKata.GameType">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

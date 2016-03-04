@@ -23,6 +23,8 @@ namespace DartsKata
 
         public void Add(params IDartThrowResult[] dartsThrown)
         {
+            Console.WriteLine("Darts:" + String.Join(",", dartsThrown.Select(d => d.TotalPoints)));
+
             var updatedScore = _score;
             foreach(var result in dartsThrown)
             {

@@ -8,16 +8,28 @@ namespace DartsKata
 {
     public class DartsGame
     {
+        private GameType _gameType;
         private IPlayer[] _players;
 
-        public DartsGame(IPlayer[] players)
+        public DartsGame(GameType gameType, IPlayer[] players)
         {
             if (players == null) throw new ArgumentNullException("players");
             if (players.Length < 2) throw new ArgumentOutOfRangeException("players");
 
+            this._gameType = gameType;
             this._players = players;
+            foreach (var player in this._players)
+            {
+                player.Initialize(new Scorecard((int)gameType));
+            }
         }
 
-        public bool Finished { get; set; }
+        public bool Finished 
+        { 
+            get
+            {
+                return this._players.Any(p => p.HasWon);
+            }
+        }    
     }
 }

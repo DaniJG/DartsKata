@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DartsKata
 {
-    public interface IPlayer
+    public enum GameType
     {
-        bool HasWon { get; }
-
-        void Initialize(IScorecard scorecard);
-    }
+        The301 = 301,
+        The501 = 501
+    };
 }

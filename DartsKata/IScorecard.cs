@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DartsKata
 {
-    public interface IPlayer
+    public interface IScorecard
     {
-        bool HasWon { get; }
-
-        void Initialize(IScorecard scorecard);
+        int Score { get; }
     }
 }

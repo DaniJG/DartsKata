@@ -10,17 +10,12 @@ namespace DartsKata.Test
     {
         private Mock<IPlayer> _player1;
         private Mock<IPlayer> _player2;
-        private DartsGame _dartsGame;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _player1 = new Mock<IPlayer>();
-            //_player1.SetupGet(p => p.Score).Returns(2);
             _player2 = new Mock<IPlayer>();
-            //_player2.SetupGet(p => p.Score).Returns(16);
-
-            //_dartsGame = new DartsGame(new IPlayer[] { _player1.Object, _player2.Object });
         }
 
         [TestMethod]
@@ -42,8 +37,8 @@ namespace DartsKata.Test
         {
             var dartsGame = new DartsGame(GameType.The301, new[] { _player1.Object, _player2.Object });
 
-            _player1.Verify(p => p.Initialize(It.IsAny<IScorecard>()));
-            _player2.Verify(p => p.Initialize(It.IsAny<IScorecard>()));
+            _player1.Verify(p => p.StartNewGame(It.IsAny<IScorecard>()));
+            _player2.Verify(p => p.StartNewGame(It.IsAny<IScorecard>()));
         }
 
         [TestMethod]
@@ -51,8 +46,8 @@ namespace DartsKata.Test
         {
             var dartsGame = new DartsGame(GameType.The501, new[] { _player1.Object, _player2.Object });
 
-            _player1.Verify(p => p.Initialize(It.Is<IScorecard>(sc => sc.Score == 501)));
-            _player2.Verify(p => p.Initialize(It.Is<IScorecard>(sc => sc.Score == 501)));
+            _player1.Verify(p => p.StartNewGame(It.Is<IScorecard>(sc => sc.Score == 501)));
+            _player2.Verify(p => p.StartNewGame(It.Is<IScorecard>(sc => sc.Score == 501)));
         }
 
         [TestMethod]
@@ -60,8 +55,8 @@ namespace DartsKata.Test
         {
             var dartsGame = new DartsGame(GameType.The301, new[] { _player1.Object, _player2.Object });
 
-            _player1.Verify(p => p.Initialize(It.Is<IScorecard>(sc => sc.Score == 301)));
-            _player2.Verify(p => p.Initialize(It.Is<IScorecard>(sc => sc.Score == 301)));
+            _player1.Verify(p => p.StartNewGame(It.Is<IScorecard>(sc => sc.Score == 301)));
+            _player2.Verify(p => p.StartNewGame(It.Is<IScorecard>(sc => sc.Score == 301)));
         }
 
         [TestMethod]

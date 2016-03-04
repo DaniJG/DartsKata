@@ -20,7 +20,7 @@ namespace DartsKata
             this._players = players;
             foreach (var player in this._players)
             {
-                player.Initialize(new Scorecard((int)gameType));
+                player.StartNewGame(new Scorecard((int)gameType));
             }
         }
 

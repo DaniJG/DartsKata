@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DartsKata
 {
-    public interface IScorecard
+    public interface IDartThrower
     {
-        int Score { get; }
-
-        void Add(params IDartThrowResult[] dartsThrown);
+        IDartThrowResult ThrowDart(int targetScore);
     }
 }

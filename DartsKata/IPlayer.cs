@@ -10,7 +10,7 @@ namespace DartsKata
     {
         bool HasWon { get; }
 
-        void Initialize(IScorecard scorecard);
+        void StartNewGame(IScorecard scorecard);
 
         void PlayTurn();
     }

@@ -19,5 +19,11 @@ namespace DartsKata
         {
             get { return this._score; }
         }
+
+
+        public void Add(params IDartThrowResult[] dartsThrown)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

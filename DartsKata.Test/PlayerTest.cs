@@ -22,6 +22,21 @@ namespace DartsKata.Test
         }
 
         [TestMethod]
+        public void Player_CurrentScorecard_ReturnsTheScorecardOfCurrentGame()
+        {
+            _player.StartNewGame(_scorecard.Object);
+
+            Assert.AreEqual(_scorecard.Object, _player.CurrentScorecard);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Player_CurrentScorecard_ThrowsExceptionIfNoGameHasBeenStartedYet()
+        {
+            var scorecard = _player.CurrentScorecard;
+        }
+
+        [TestMethod]
         public void Player_HasWon_WhenScorecardReachesZero()
         {
             _player.StartNewGame(_scorecard.Object);

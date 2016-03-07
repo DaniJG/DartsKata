@@ -21,8 +21,8 @@ namespace DartsKata
         public DartThrowResult(int points, PointsModifier? pointsModifier = null)
         {
             if (points == 0 && pointsModifier.HasValue) throw new ArgumentOutOfRangeException("pointsModifier", "No modified is allowed when scoring 0 points");
-            if (points == 25 && pointsModifier.HasValue) throw new ArgumentOutOfRangeException("pointsModifier", "No modified is allowed when scoring 0 points");
-            if (points == 50 && pointsModifier.HasValue) throw new ArgumentOutOfRangeException("pointsModifier", "No modified is allowed when scoring 0 points");
+            if (points == 25 && pointsModifier.HasValue) throw new ArgumentOutOfRangeException("pointsModifier", "No modified is allowed with the outer bullseye");
+            if (points == 50 && pointsModifier.HasValue) throw new ArgumentOutOfRangeException("pointsModifier", "No modified is allowed with the inner bullseye");
             if (points < 0) throw new ArgumentOutOfRangeException("points");
             if (points > 20 && points != 25 && points != 50) throw new ArgumentOutOfRangeException("points");
 
@@ -35,7 +35,7 @@ namespace DartsKata
             get { return _pointsModifier == PointsModifier.Double; }
         }
 
-        public bool IsBullseye
+        public bool IsInnerBullseye
         {
             get { return _points == 50; }
         }

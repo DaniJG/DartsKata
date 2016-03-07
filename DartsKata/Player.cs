@@ -16,6 +16,15 @@ namespace DartsKata
             this._dartThrower = dartThrower;
         }
 
+        public IScorecard CurrentScorecard
+        {
+            get 
+            {
+                if (this._scorecard == null) throw new InvalidOperationException("No game has been started yet.");
+                return this._scorecard; 
+            }
+        }
+
         public bool HasWon
         {
             get 
@@ -44,6 +53,6 @@ namespace DartsKata
                 if (score < 2) break;
             }
             _scorecard.Add(throwResults.ToArray());
-        }
+        }        
     }
 }

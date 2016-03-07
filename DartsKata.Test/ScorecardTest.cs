@@ -63,7 +63,7 @@ namespace DartsKata.Test
         }
 
         [TestMethod]
-        public void Scorecard_Add_LeavesPreviousScoreWhenScoreDecreasesToZero_AndLastDartIsNotDoubleNorBullsEye()
+        public void Scorecard_Add_LeavesPreviousScoreWhenScoreDecreasesToZero_AndLastDartIsNotDoubleNorInnerBullsEye()
         {
             _throwResult[0].SetupGet(r => r.TotalPoints).Returns(60);
             _throwResult[1].SetupGet(r => r.TotalPoints).Returns(60);
@@ -89,12 +89,12 @@ namespace DartsKata.Test
         }
 
         [TestMethod]
-        public void Scorecard_Add_SetsScoreAsZero_WhenNewScoreIsZero_AndLastDartIsBullseye()
+        public void Scorecard_Add_SetsScoreAsZero_WhenNewScoreIsZero_AndLastDartIsInnerBullseye()
         {
             _throwResult[0].SetupGet(r => r.TotalPoints).Returns(20);            
             _throwResult[1].SetupGet(r => r.TotalPoints).Returns(20);
             _throwResult[2].SetupGet(r => r.TotalPoints).Returns(50);
-            _throwResult[2].SetupGet(r => r.IsBullseye).Returns(true);
+            _throwResult[2].SetupGet(r => r.IsInnerBullseye).Returns(true);
 
             var scorecard = new Scorecard(90);
             scorecard.Add(_throwResult[0].Object, _throwResult[1].Object, _throwResult[2].Object);

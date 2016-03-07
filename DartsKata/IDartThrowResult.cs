@@ -12,6 +12,6 @@ namespace DartsKata
 
         bool IsDouble { get; }
 
-        bool IsBullseye { get; }
+        bool IsInnerBullseye { get; }
     }
 }

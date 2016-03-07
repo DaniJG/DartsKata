@@ -22,28 +22,28 @@ namespace DartsKata.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DartThrowResult_CannotHaveADouble_WhenScoringCenterPoints()
+        public void DartThrowResult_CannotHaveADouble_WhenScoringOuterBullseye()
         {
             var result = new DartThrowResult(25, PointsModifier.Double);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DartThrowResult_CannotHaveATriple_WhenScoringCenterPoints()
+        public void DartThrowResult_CannotHaveATriple_WhenScoringOuterBullseye()
         {
             var result = new DartThrowResult(25, PointsModifier.Triple);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DartThrowResult_CannotHaveADouble_WhenScoringBullseyePoints()
+        public void DartThrowResult_CannotHaveADouble_WhenScoringInnerBullseye()
         {
             var result = new DartThrowResult(50, PointsModifier.Double);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DartThrowResult_CannotHaveATriple_WhenScoringBullseyePoints()
+        public void DartThrowResult_CannotHaveATriple_WhenScoringInnerBullseye()
         {
             var result = new DartThrowResult(50, PointsModifier.Triple);
         }
@@ -57,12 +57,12 @@ namespace DartsKata.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DartThrowResult_CannotHaveScoreBiggerThan20_ExceptCenterAndBullseye()
+        public void DartThrowResult_CannotHaveScoreBiggerThan20_ExceptBullseye()
         {
-            var centerResult = new DartThrowResult(25);
-            var buulseyeResult = new DartThrowResult(50);
-            Assert.IsNotNull(centerResult);
-            Assert.IsNotNull(buulseyeResult);
+            var outerBullseyeResult = new DartThrowResult(25);
+            var innerBullseyeResult = new DartThrowResult(50);
+            Assert.IsNotNull(outerBullseyeResult);
+            Assert.IsNotNull(innerBullseyeResult);
 
             var result = new DartThrowResult(21);
         }
@@ -80,15 +80,15 @@ namespace DartsKata.Test
         }
 
         [TestMethod]
-        public void DartThrowResult_IsBullseye_ReturnsTrueWith50Points()
+        public void DartThrowResult_IsInnerBullseye_ReturnsTrueWith50Points()
         {
-            var nonBullseyeResult1 = new DartThrowResult(25);
-            var nonBullseyeResult2 = new DartThrowResult(20, PointsModifier.Triple);
-            var bullseyeResult = new DartThrowResult(50);
+            var outerBullseyeResult = new DartThrowResult(25);
+            var nonBullseyeResult = new DartThrowResult(20, PointsModifier.Triple);
+            var innerBullseyeResult = new DartThrowResult(50);
 
-            Assert.IsFalse(nonBullseyeResult1.IsBullseye);
-            Assert.IsFalse(nonBullseyeResult2.IsBullseye);
-            Assert.IsTrue(bullseyeResult.IsBullseye);
+            Assert.IsFalse(outerBullseyeResult.IsInnerBullseye);
+            Assert.IsFalse(nonBullseyeResult.IsInnerBullseye);
+            Assert.IsTrue(innerBullseyeResult.IsInnerBullseye);
         }
 
         [TestMethod]

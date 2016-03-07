@@ -8,6 +8,8 @@ namespace DartsKata
 {
     public interface IPlayer
     {
+        IScorecard CurrentScorecard { get; }
+
         bool HasWon { get; }
 
         void StartNewGame(IScorecard scorecard);

@@ -23,8 +23,6 @@ namespace DartsKata
 
         public void Add(params IDartThrowResult[] dartsThrown)
         {
-            Console.WriteLine("Darts:" + String.Join(",", dartsThrown.Select(d => d.TotalPoints)));
-
             var updatedScore = _score;
             foreach(var result in dartsThrown)
             {
@@ -44,7 +42,7 @@ namespace DartsKata
         private bool verifyValidLastThrow(IDartThrowResult[] dartsThrown)
         {
             var lastDart = dartsThrown.Last();
-            return lastDart.IsBullseye || lastDart.IsDouble;
+            return lastDart.IsInnerBullseye || lastDart.IsDouble;
         }
     }
 }

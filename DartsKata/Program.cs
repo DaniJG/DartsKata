@@ -11,16 +11,72 @@ namespace DartsKata
         static void Main(string[] args)
         {
             var dartThrower = new RandomThrower();
-            var player1 = new Player(dartThrower);
-            var player2 = new Player(dartThrower);
+            var player1 = new ReportingPlayer(new Player(dartThrower), "A");
+            var player2 = new ReportingPlayer(new Player(dartThrower), "B");
             var game = new DartsGame(GameType.The301, player1, player2);
 
+            var currentTurn = 0;
             while (!game.Finished)
             {
+                Console.WriteLine("Playing turn {0}", ++currentTurn);
                 game.PlayTurn();
             }
 
             Console.ReadLine();
+        }
+
+        private class ReportingPlayer: IPlayer
+        {
+            public ReportingPlayer(IPlayer player, string identifier)
+            {
+                this.RealPlayer = player;
+                this.Identifier = identifier;
+            }
+
+            public IPlayer RealPlayer { get; set; }
+            public string Identifier { get; set; }
+
+            public IScorecard CurrentScorecard
+            {
+                get { return this.RealPlayer.CurrentScorecard; }
+            }
+
+            public bool HasWon
+            {
+                get { return this.RealPlayer.HasWon; }
+            }
+
+            public void StartNewGame(IScorecard scorecard)
+            {
+                this.RealPlayer.StartNewGame(new ReportingScorecard(scorecard));
+            }
+
+            public void PlayTurn()
+            {
+                Console.WriteLine(String.Format("Player-{0}. Remaining points:{1}", this.Identifier, this.RealPlayer.CurrentScorecard.Score));    
+                this.RealPlayer.PlayTurn(); ;
+            }
+        }
+
+        private class ReportingScorecard: IScorecard
+        {
+            public ReportingScorecard(IScorecard scorecard)
+            {
+                this.RealScorecard = scorecard;
+            }
+
+            public IScorecard RealScorecard { get; set; }
+
+            public int Score
+            {
+                get { return this.RealScorecard.Score; }
+            }
+
+            public void Add(params IDartThrowResult[] dartsThrown)
+            {
+                Console.WriteLine("Darts Thrown:" + String.Join(",", dartsThrown.Select(d => d.TotalPoints)));
+                this.RealScorecard.Add(dartsThrown);
+            }
         }
 
         private class RandomThrower: IDartThrower

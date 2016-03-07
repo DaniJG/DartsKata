@@ -36,10 +36,8 @@ namespace DartsKata
         {
             if (this.Finished) throw new InvalidOperationException("Cannot play another turn on a finished game");
 
-            Console.WriteLine("Playing next Turn");
             foreach(var player in this._players)
             {
-                Console.WriteLine("Player " + this._players.ToList().IndexOf(player));    
                 player.PlayTurn();
                 if (player.HasWon) break;
             }
